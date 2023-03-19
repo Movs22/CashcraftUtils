@@ -1,0 +1,11 @@
+name: SignEditor
+version: 1.0.0
+author: [Movies22]
+main: com.movies22.signeditor.Main
+description: Makes it easier to edit signs
+api-version: 1.19
+commands:
+    sign:
+        description: Edits a sign
+        usage: /sign [colour/set/clear] [1/2/3/4/all] [text]
+        aliases: [editsign]
