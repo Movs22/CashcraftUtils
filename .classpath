@@ -16,7 +16,21 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< Updated upstream
 	<classpathentry kind="lib" path="/Users/tiago/Documents/GitHub/TrainCarts-Cashcraft/target/TrainCarts-1.19.3-1625-Cashcraft-NO-CI.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/TrainCarts-1.19.3-1625-Cashcraft-NO-CI.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/item-nbt-api-plugin-2.11.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/spigot-api-1.19.3-R0.1-SNAPSHOT.jar">
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
