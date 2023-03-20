@@ -14,7 +14,9 @@ public class Main extends JavaPlugin {
     public void setMaintenance(Boolean m) {
     	this._maintenance = m;
     }
-    
+    public Boolean getMaintaince() {
+    	return this._maintenance;
+    }
     @Override
     public void onEnable() {
         plugin = this;
@@ -43,5 +45,4 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         plugin.getLogger().log(Level.INFO, "Disabling Cashcraft Utils...");
     }
-
 }
