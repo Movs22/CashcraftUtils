@@ -1,6 +1,7 @@
 package com.cashcraft.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -42,6 +43,19 @@ public class MetroCommand implements CommandExecutor {
 			List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 			List<String> sc = (List<String>) plugin.getConfig().getList("StationsCodes");
 			if(sc.contains(args[0])) {
+				String t = "";
+				if(args.length == 1) {
+					t = plugin.getConfig().getString(args[0] + ".Main");
+				} else {
+					t = plugin.getConfig().getString(args[0] + "." + Arrays.asList(args).subList(1, args.length));
+				}
+				if(t.startsWith("h:")) {
+					
+				} else if(t.startsWith("w:")) {
+					
+				} else if(t.startsWith("t:")) {
+					
+				}
 				
 			} else {
 				
