@@ -27,7 +27,6 @@ public class CreateCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
-			if(sender.isOp()) {
 				if (args[0].equals("lift")) {
 					Player p = (Player) sender;
 					Location loc = p.getLocation();
@@ -46,10 +45,6 @@ public class CreateCommand implements CommandExecutor {
 				} else {
 					return false;
 				}
-			} else {
-				sender.sendMessage(ChatColor.DARK_RED + "You can`t use this command.");
-				return true;
-			}
 
 		} else {
 			sender.sendMessage(ChatColor.DARK_RED + "You cant use this command in the server console.");

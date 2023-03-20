@@ -1,4 +1,4 @@
-name: Cashcraft Utils
+name: Cashcraft-Utils
 version: 1.0.0
 author: [Movies22, JackGAttack4]
 main: com.cashcraft.utils.Main
@@ -13,9 +13,23 @@ commands:
     create:
         description: Create lifts (and more soon)
         usage: /create [lift]
-        permission: cashcraft.lift
+        permission: cashcraft.create
     invisitem:
         description: Get invisible Item Frames
         usage: /invisitem [glow]
         permission: cashcraft.item
+    metro:
+        description: Teleports to a metro station
+        usage: /metro [station/list]
+        permission: cashcraft.metro
+    createmetro:
+        description: Create a metro station
+        usage: /createmetro [code] [station] [w:WARP/h:HOME] <Position>
+        aliases: [cm]
+        permission: cashcraft.metro.create
+    delmetro:
+        description: Deletes a metro station
+        usage: /delmetro [code/station] <Position>
+        aliases: [deletemetro, rmetro]
+        permission: cashcraft.metro.delete 
         

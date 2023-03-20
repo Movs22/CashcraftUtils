@@ -27,7 +27,6 @@ public class InvisItemCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length == 1 && args[0].equals("glow")) {
 				if (sender instanceof Player) {
-					if(sender.isOp()) {
 					Player p = (Player) sender;
 					ItemStack gitem = new ItemStack(Material.GLOW_ITEM_FRAME);
 					ItemMeta meta = gitem.getItemMeta();
@@ -38,17 +37,12 @@ public class InvisItemCommand implements CommandExecutor {
 					gitemnbt2.setByte("Invisible", (byte) 1);
 					p.getInventory().setItemInMainHand(gitemnbt.getItem());
 					return true;
-					} else {
-						sender.sendMessage(ChatColor.DARK_RED + "You can`t use this command.");
-						return true;
-					}
 				} else {
 					sender.sendMessage(ChatColor.DARK_RED + "You can`t use this command in the server console.");
 					return true;
 				}
 		} else {
 			if (sender instanceof Player) {
-				if(sender.isOp()) {
 					Player p = (Player) sender;
 					ItemStack item = new ItemStack(Material.ITEM_FRAME);
 					ItemMeta meta = item.getItemMeta();
@@ -59,10 +53,6 @@ public class InvisItemCommand implements CommandExecutor {
 					itemnbt2.setByte("Invisible", (byte) 1);
 					p.getInventory().setItemInMainHand(itemnbt.getItem());
 					return true;
-				} else {
-					sender.sendMessage(ChatColor.DARK_RED + "You can`t use this command.");
-					return true;
-				}
 			} else {
 				sender.sendMessage(ChatColor.DARK_RED + "You can`t use this command in the server console");
 				return true;
