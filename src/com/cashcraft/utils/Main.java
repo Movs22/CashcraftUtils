@@ -9,6 +9,12 @@ public class Main extends JavaPlugin {
 	//TODO: add more status below
 	String[] status = {"Clicking cookies, since 2022", "Traincarts-1.19.3-1624-Cashcraft-NO-CI.jar","Stop destroying maintenance doors"}; 
     public static Main plugin;
+    public Boolean _maintenance;
+    
+    public void setMaintenance(Boolean m) {
+    	this._maintenance = m;
+    }
+    
     @Override
     public void onEnable() {
         plugin = this;

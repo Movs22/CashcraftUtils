@@ -29,10 +29,23 @@ public class MetroCommand implements CommandExecutor {
 		if(args[0] == "list") {
 			List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 			if(s == null || s.size() == 0) { 
-				sender.sendMessage(ChatColor.GOLD + "Couldn't find any metro stations	.");
+				sender.sendMessage(ChatColor.GOLD + "Couldn't find any metro stations.");
 				return true;
+			} else {
+				String a = ChatColor.GOLD + "There are " + s.size() + " metro stations: ";
+				for(int i = 0; i < s.size() - 1; i++) {
+					a = ChatColor.GREEN + s.get(i) + ChatColor.GOLD + ", ";
+				}
 			}
 			return true;
+		} else {
+			List<String> s = (List<String>) plugin.getConfig().getList("Stations");
+			List<String> sc = (List<String>) plugin.getConfig().getList("StationsCodes");
+			if(sc.contains(args[0])) {
+				
+			} else {
+				
+			}
 		}
 		return false;
 	}
