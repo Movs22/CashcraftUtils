@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.bergerkiller.bukkit.tc.TrainCarts;
 import com.cashcraft.utils.commands.CreateCommand;
 import com.cashcraft.utils.commands.InvisItemCommand;
+import com.cashcraft.utils.commands.MaintenanceCommand;
 import com.cashcraft.utils.commands.MetroCommand;
 import com.cashcraft.utils.commands.SignCommand;
 import com.cashcraft.utils.events.PlayerJoin;
@@ -19,8 +20,8 @@ public class Main extends JavaPlugin {
 	//TODO: add more status below
 	String[] status = {"Clicking cookies, since 2022", "Traincarts-1.19.3-1624-Cashcraft-NO-CI.jar","Stop destroying maintenance doors"}; 
     public static Main plugin;
-    public Boolean _maintenance;
-    public String _maintenanceReason;
+    public Boolean _maintenance = false;
+    public String _maintenanceReason = "";
     public TrainCarts traincarts;
     
     public int getCCUVersion() {
@@ -68,6 +69,7 @@ public class Main extends JavaPlugin {
         new CreateCommand(this);
         new InvisItemCommand(this);
         new MetroCommand(this);
+        new MaintenanceCommand(this);
     }
 
     @Override
