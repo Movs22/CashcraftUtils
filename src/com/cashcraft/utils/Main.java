@@ -28,6 +28,17 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        if(plugin.getServer().getPluginManager().isPluginEnabled("Train_Carts")) {
+        	this.traincarts = (TrainCarts) plugin.getServer().getPluginManager().getPlugin("Train_Carts");
+        	if(this.traincarts.getTCVersion() != this.getCCUVersion()) {
+        		this.traincarts = null;
+        		plugin.getLogger().log(Level.WARNING, "Incompatible version of TrainCarts found. Expected build " + this.getCCUVersion() + ", found build " + this.traincarts.getTCVersion() + ".");
+        	} else {
+        		plugin.getLogger().log(Level.INFO, "Loaded TrainCarts (Build " +  this.traincarts.getTCVersion() + "). Loaded " + traincarts.getPathProvider().getWorld("Main1").getNodes().size() + " nodes in minecraft:Main1.");
+        	}
+        } else {
+        	plugin.getLogger().log(Level.WARNING, "TrainCarts not found. TC Nodes will not be supported.");
+        }
         plugin.getLogger().log(Level.INFO, "Loaded Cashcraft Utils (Build " + plugin.getCCUVersion() + ").");
         plugin.getLogger().log(Level.INFO, status[(int) Math.round(Math.random()*status.length)]);
         if(getConfig().options() == null) {
