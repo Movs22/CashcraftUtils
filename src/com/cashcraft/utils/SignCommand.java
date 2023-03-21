@@ -222,13 +222,13 @@ public class SignCommand implements CommandExecutor {
 							arguments.add(StationParser.listColor()[i]);
 						};
 					} else if(args.length == 3 && args[0].equals("set")) {
-						if(args[1] == "1") {
+						if(args[1].equals("1")) {
 							arguments.add(s.getLine(0));
-						} else if(args[1] == "2") {
+						} else if(args[1].equals("2")) {
 							arguments.add(s.getLine(1));
-						} else if(args[1] == "3") {
+						} else if(args[1].equals("3")) {
 							arguments.add(s.getLine(2));
-						} else if(args[1] == "4") {
+						} else if(args[1].equals("4")) {
 							arguments.add(s.getLine(3));
 						}
 					} else {

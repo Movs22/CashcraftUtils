@@ -25,6 +25,7 @@ public class Main extends JavaPlugin {
     public Boolean getMaintaince() {
     	return this._maintenance;
     }
+    
     @Override
     public void onEnable() {
         plugin = this;
