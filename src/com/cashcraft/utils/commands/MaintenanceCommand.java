@@ -23,7 +23,7 @@ public class MaintenanceCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length == 1) {
-			if (args[0] == "off") {
+			if (args[0].equals("off")) {
 				if (plugin.getMaintaince() == true) {
 					plugin.setMaintenance(false, "None");
 					sender.getServer().getOnlinePlayers().forEach(p -> {
@@ -34,7 +34,7 @@ public class MaintenanceCommand implements CommandExecutor {
 					return true;
 				}
 
-			} else if (args[0] == "on") {
+			} else if (args[0].equals("on")) {
 				if (plugin.getMaintaince() == false) {
 					plugin.setMaintenance(true, "None");
 					sender.getServer().getOnlinePlayers().forEach(p -> {
