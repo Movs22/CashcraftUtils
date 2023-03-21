@@ -9,39 +9,48 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 public class MaintenanceCommand implements CommandExecutor {
-    @SuppressWarnings("unused")
-    private Main plugin;
+	@SuppressWarnings("unused")
+	private Main plugin;
 
-    public MaintenanceCommand(Main plugin) {
-        this.plugin = plugin;
-        plugin.getCommand("maintenance").setExecutor(this);
-        plugin.getCommand("maintenance").setTabCompleter(new MaintenanceTabComplete());
-    }
+	public MaintenanceCommand(Main plugin) {
+		this.plugin = plugin;
+		plugin.getCommand("maintenance").setExecutor(this);
+		plugin.getCommand("maintenance").setTabCompleter(new MaintenanceTabComplete());
+	}
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (args.length == 1) {
-            if (args[0] == "off") {
-                if(plugin.getMaintaince() == true) {
-                    plugin.setMaintenance(false);
-                    p.sendMessage(ChatColor.RED + "Maintenance disabled by " + sender + ".");
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Maintenance is already disabled");
-                }
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (args.length == 1) {
+			if (args[0] == "off") {
+				if (plugin.getMaintaince() == true) {
+					plugin.setMaintenance(false);
+					sender.getServer().getOnlinePlayers().forEach(p -> {
+						p.sendMessage(ChatColor.RED + "Maintenance disabled by " + sender + ".");
+					});
+				} else {
+					sender.sendMessage(ChatColor.RED + "Maintenance is already disabled.");
+					return true;
+				}
 
-            }
-            return true;
+			} else if (args[0] == "on") {
+				if (plugin.getMaintaince() == false) {
+					plugin.setMaintenance(true);
+				} else {
+					sender.sendMessage(ChatColor.DARK_RED + "Maintenance is already enabled.");
+					return true;
 
-        } else {
-            return false;
-        }
+				}
+				return true;
 
-    }
+			}
+		}
+		return true;
+	}
 
-    private class MaintenanceTabComplete implements TabCompleter {
-        public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-            return null;
+	private class MaintenanceTabComplete implements TabCompleter {
+		public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+			return null;
 
-        }
-    }
+		}
+	}
 }
