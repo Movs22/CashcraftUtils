@@ -1,35 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/TrainCarts-1.19.3-1627-Cashcraft-NO-CI.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/LuckPerms-Bukkit-5.4.40.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/EssentialsX-2.20.0-dev+44-43d84de.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/Spigot/Spigot-API/target/spigot-api-1.19.3-R0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/item-nbt-api-plugin-2.11.2.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/.m2/repository/de/tr7zw/item-nbt-api-plugin/2.11.2/item-nbt-api-plugin-2.11.2.jar" sourcepath="/Users/tiago/.m2/repository/de/tr7zw/item-nbt-api-plugin/2.11.2/item-nbt-api-plugin-2.11.2-sources.jar">
 		<attributes>
-			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="de.tr7zw"/>
+			<attribute name="maven.artifactId" value="item-nbt-api-plugin"/>
+			<attribute name="maven.version" value="2.11.2"/>
+			<attribute name="maven.scope" value="provided"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/item-nbt-api-plugin-2.11.2.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/tiago/Documents/GitHub/TrainCarts-Cashcraft/target/TrainCarts-1.19.3-1627-Cashcraft-NO-CI.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/tiago/Downloads/EssentialsX-2.19.7.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/tiago/Spigot/Spigot-API/target/spigot-api-1.19.3-R0.1-SNAPSHOT.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/plugins/BKCommonLib-1.19.3-v1-1438.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="/Users/tiago/Desktop/Cashcraft/CC/Server [1.19.3]/purpur.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

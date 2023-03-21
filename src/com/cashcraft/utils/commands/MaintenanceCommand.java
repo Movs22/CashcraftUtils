@@ -1,4 +1,4 @@
-package com.cashcraft.utils;
+package com.cashcraft.utils.commands;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+
+import com.cashcraft.utils.Main;
 
 public class MaintenanceCommand implements CommandExecutor {
 	@SuppressWarnings("unused")
@@ -23,7 +25,7 @@ public class MaintenanceCommand implements CommandExecutor {
 		if (args.length == 1) {
 			if (args[0] == "off") {
 				if (plugin.getMaintaince() == true) {
-					plugin.setMaintenance(false);
+					plugin.setMaintenance(false, "None");
 					sender.getServer().getOnlinePlayers().forEach(p -> {
 						p.sendMessage(ChatColor.RED + "Maintenance disabled by " + sender + ".");
 					});
@@ -34,7 +36,10 @@ public class MaintenanceCommand implements CommandExecutor {
 
 			} else if (args[0] == "on") {
 				if (plugin.getMaintaince() == false) {
-					plugin.setMaintenance(true);
+					plugin.setMaintenance(true, "None");
+					sender.getServer().getOnlinePlayers().forEach(p -> {
+						p.sendMessage(ChatColor.GREEN + "Maintenance enabled by " + sender + ".");
+					});
 				} else {
 					sender.sendMessage(ChatColor.DARK_RED + "Maintenance is already enabled.");
 					return true;

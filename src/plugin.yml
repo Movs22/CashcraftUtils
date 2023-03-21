@@ -32,4 +32,7 @@ commands:
         usage: /delmetro [code/station] <Position>
         aliases: [deletemetro, rmetro]
         permission: cashcraft.metro.delete 
-        
+    maintenance:
+        description: Starts/Stops a server maintenance
+        usage: /maintenance [on/off] <reason>
+        permission: cashcraft.maintenance.use

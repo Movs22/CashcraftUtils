@@ -1,4 +1,4 @@
-package com.cashcraft.utils;
+package com.cashcraft.utils.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.bergerkiller.bukkit.tc.utils.StationParser;
+import com.cashcraft.utils.Main;
 
 public class SignCommand implements CommandExecutor {
 	@SuppressWarnings("unused")
