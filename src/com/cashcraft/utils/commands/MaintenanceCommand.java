@@ -11,7 +11,6 @@ import org.bukkit.command.TabCompleter;
 import com.cashcraft.utils.Main;
 
 public class MaintenanceCommand implements CommandExecutor {
-	@SuppressWarnings("unused")
 	private Main plugin;
 
 	public MaintenanceCommand(Main plugin) {
