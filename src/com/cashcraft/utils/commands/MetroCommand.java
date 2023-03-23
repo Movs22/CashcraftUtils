@@ -61,7 +61,7 @@ public class MetroCommand implements CommandExecutor {
 				} else if(t.contains("w:")) {
 					
 				} else if(t.contains("t:")) {
-					PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
+					a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
 					plugin.getLogger().log(Level.INFO, "[Cashcraf Utils] (Debug) Station " + t + " - Found node " + a.getName() + " - " + a.location + " for " + t);
 					return true;
 				}
