@@ -3,8 +3,6 @@ package com.cashcraft.utils;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.bukkit.ChatColor;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.bergerkiller.bukkit.tc.TrainCarts;
@@ -39,29 +37,31 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        /*if(plugin.getServer().getPluginManager().isPluginEnabled("Train_Carts")) {
+        //TODO: fix this code.
+        saveDefaultConfig();
+        plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Loaded Cashcraft Utils (Build " + plugin.getCCUVersion() + ").");
+        plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] " + status[(int) Math.round(Math.random()*(status.length - 1))]);
+        if(!getConfig().getString("version").equals("1.0")) {
+        	plugin.getLogger().log(Level.SEVERE, "Config.yml was created on an older version. Plugin has been disabled to prevent any damage.");
+        	getServer().getPluginManager().disablePlugin(this);
+        }
+        if(!(getConfig().getList("Stations") instanceof List) || getConfig().getList("Stations") == null) {
+        	plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] Config.yml is corrupted. Failed to load stations.");
+        } else {
+        	plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Loaded " + getConfig().getList("Stations").size() + " stations.");
+        }
+        
+        if(plugin.getServer().getPluginManager().getPlugin("Train_Carts") != null) {
         	this.traincarts = (TrainCarts) plugin.getServer().getPluginManager().getPlugin("Train_Carts");
         	if(this.traincarts.getTCVersion() != this.getCCUVersion()) {
         		this.traincarts = null;
-        		plugin.getLogger().log(Level.WARNING, "Incompatible version of TrainCarts found. Expected build " + this.getCCUVersion() + ", found build " + this.traincarts.getTCVersion() + ".");
+        		plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] Incompatible version of TrainCarts found. Expected build " + this.getCCUVersion() + ", found build " + this.traincarts.getTCVersion() + ".");
         	} else {
-        		plugin.getLogger().log(Level.INFO, "Loaded TrainCarts (Build " +  this.traincarts.getTCVersion() + "). Loaded " + traincarts.getPathProvider().getWorld("Main1").getNodes().size() + " nodes in minecraft:Main1.");
+        		this.traincarts.getPathProvider().getWorld("Main1").rerouteAll();
+        		plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Loaded TrainCarts (Build " +  this.traincarts.getTCVersion() + "). Loaded " + traincarts.getPathProvider().getWorld("Main1").getNodes().size() + " nodes in minecraft:Main1.");
         	}
         } else {
-        	plugin.getLogger().log(Level.WARNING, "TrainCarts not found. TC Nodes will not be supported.");
-        }*/
-        //TODO: fix this code.
-        saveDefaultConfig();
-        plugin.getLogger().log(Level.INFO, "Loaded Cashcraft Utils (Build " + plugin.getCCUVersion() + ").");
-        plugin.getLogger().log(Level.INFO, status[(int) Math.round(Math.random()*(status.length - 1))]);
-        /*if(getConfig().getString("version") != "1.0") {
-        	plugin.getLogger().log(Level.SEVERE, "Config.yml was created on an older version. Plugin has been disabled to prevent any damage.");
-        	getServer().getPluginManager().disablePlugin(this);
-        }*/
-        if((getConfig().getList("Stations") instanceof List) || getConfig().getList("Stations") == null) {
-        	plugin.getLogger().log(Level.WARNING, "Config.yml is corrupted. Failed to load stations.");
-        } else {
-        	plugin.getLogger().log(Level.INFO, "Loaded " + getConfig().getList("Stations").size() + " stations.");
+        	plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] TrainCarts not found. TC Nodes will not be supported.");
         }
         
         plugin.getServer().getPluginManager().registerEvents(new PlayerJoin(this), plugin);

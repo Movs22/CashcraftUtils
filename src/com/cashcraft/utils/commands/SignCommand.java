@@ -120,10 +120,7 @@ public class SignCommand implements CommandExecutor {
 		if(args[0].equals("set")) {
 			if(StationParser.convertColor(args[1]).equals(args[1])) {
 				String[] st = Arrays.copyOfRange(args, 2, args.length);
-				String ctx = "";
-				for(int i = 0; i < st.length; i++) {
-					ctx = ctx + st[i] + " ";
-				}
+				String ctx = String.join(" ", st);
 				ctx = ctx.replaceAll("&", "§").replaceAll("§§", "&");
 				if(args[1].equals("sign")) {
 					for(int i = 0; i < 4; i++) {
@@ -224,13 +221,13 @@ public class SignCommand implements CommandExecutor {
 						};
 					} else if(args.length == 3 && args[0].equals("set")) {
 						if(args[1].equals("1")) {
-							arguments.add(s.getLine(0));
+							arguments.add(s.getLine(0).replaceAll("§", "&"));
 						} else if(args[1].equals("2")) {
-							arguments.add(s.getLine(1));
+							arguments.add(s.getLine(1).replaceAll("§", "&"));
 						} else if(args[1].equals("3")) {
-							arguments.add(s.getLine(2));
+							arguments.add(s.getLine(2).replaceAll("§", "&"));
 						} else if(args[1].equals("4")) {
-							arguments.add(s.getLine(3));
+							arguments.add(s.getLine(3).replaceAll("§", "&"));
 						}
 					} else {
 						return null;

@@ -26,7 +26,7 @@ public class MaintenanceCommand implements CommandExecutor {
 				if (plugin.getMaintaince() == true) {
 					plugin.setMaintenance(false, "None");
 					sender.getServer().getOnlinePlayers().forEach(p -> {
-						p.sendMessage(ChatColor.RED + "Maintenance disabled by " + sender + ".");
+						p.sendMessage(ChatColor.RED + "Maintenance disabled by " + sender.getName() + ".");
 					});
 				} else {
 					sender.sendMessage(ChatColor.RED + "Maintenance is already disabled.");
@@ -37,7 +37,7 @@ public class MaintenanceCommand implements CommandExecutor {
 				if (plugin.getMaintaince() == false) {
 					plugin.setMaintenance(true, "None");
 					sender.getServer().getOnlinePlayers().forEach(p -> {
-						p.sendMessage(ChatColor.GREEN + "Maintenance enabled by " + sender + ".");
+						p.sendMessage(ChatColor.GREEN + "Maintenance enabled by " + sender.getName() + ".");
 					});
 				} else {
 					sender.sendMessage(ChatColor.DARK_RED + "Maintenance is already enabled.");
