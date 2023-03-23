@@ -41,14 +41,15 @@ public class CreateCommand implements CommandExecutor {
 					command.setItemMeta(meta);
 					NBTItem commandnbt = new NBTItem(command);
 					NBTCompound commandnbt2 = commandnbt.getOrCreateCompound("BlockEntityTag");
-					commandnbt2.setString("Command",
-							"tp @p " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
+					commandnbt2.setString("Command", "tp @p " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
 					p.getInventory().setItemInMainHand(commandnbt.getItem());
+					return true;
+				} else if(args[0].equals("metro")) {
+					
 					return true;
 				} else {
 					return false;
 				}
-
 		} else {
 			sender.sendMessage(ChatColor.DARK_RED + "You cant use this command in the server console.");
 			return true;
