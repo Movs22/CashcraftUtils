@@ -49,7 +49,7 @@ public class MetroCommand implements CommandExecutor {
 					t = plugin.getConfig().getString(args[0] + "." + String.join(" ", Arrays.asList(args).subList(1, args.length)));
 				}
 				plugin.getLogger().log(Level.INFO, args[0] + "." + String.join(" ", Arrays.asList(args).subList(1, args.length)));
-				plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] (Debug) Found station: " + t.toString() + " - " + (t.contains("t:") ? "[TC]" : "[Other node]")+ " for arg " + args[0]);
+				plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] (Test) Found station: " + t.toString() + " - " + (t.contains("t:") ? "[TC]" : "[Other node]")+ " for arg " + args[0]);
 				PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
 				plugin.getLogger().log(Level.INFO, "[Cashcraf Utils] (Debug) Station " + t + " - Found node " + a.getName() + " - " + a.location + " for " + t);
 				if(t == null) {
