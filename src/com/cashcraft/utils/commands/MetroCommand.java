@@ -73,16 +73,14 @@ public class MetroCommand implements CommandExecutor {
 					sender.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + ".");
 					return true;
 				}
-				//plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] (Test) Found station: " + t.toString() + " - " + (t.contains("t:") ? "[TC]" : "[Other node]")+ " for arg " + args[0]);
-				//plugin.getLogger().log(Level.INFO, "[Cashcraf Utils] (Debug) Station " + t + " - Found node " + a.getName() + " - " + a.location + " for " + t);
 				
-				
+				sender.sendMessage(ChatColor.RED + "Location " + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + " wasn't found.");
+				return true;
 			} else {
 				sender.sendMessage(ChatColor.RED + "Station " + args[0] + " wasn't found.");
 				return true;
 			}
 		}
-		return false;
 	}
 	private class InvisItemTabComplete implements TabCompleter {
 		@SuppressWarnings("unchecked")
