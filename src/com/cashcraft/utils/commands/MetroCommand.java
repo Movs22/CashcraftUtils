@@ -50,12 +50,19 @@ public class MetroCommand implements CommandExecutor {
 			Player p = (Player) sender;
 			List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 			List<String> sc = (List<String>) plugin.getConfig().getList("StationCodes");
+			if(s.contains(args[0])) {
+				args[0] = plugin.getConfig().getString(args[0]);
+			}
 			if(sc.contains(args[0])) {
 				String t = "a:INVALID";
 				if(args.length < 2) {
 					t = plugin.getConfig().getString(args[0] + ".Main");
 				} else {
 					t = plugin.getConfig().getString(args[0] + "." + String.join(" ", Arrays.asList(args).subList(1, args.length)));
+				}
+				if(t == null || t.length() < 1) {
+					sender.sendMessage(ChatColor.RED + "Location " + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + " wasn't found.");
+					return true;
 				}
 				if(t.startsWith("t:")) {
 					PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
@@ -98,10 +105,18 @@ public class MetroCommand implements CommandExecutor {
 				arguments.add("list");
 				return arguments;
 			} else if(args.length == 2) {
-				arguments.add("go away");
-				return arguments;
+				List<String> s = (List<String>) plugin.getConfig().getList("Stations");
+				List<String> sc = (List<String>) plugin.getConfig().getList("StationCodes");
+				if(s.contains(args[0])) {
+					args[0] = plugin.getConfig().getString(args[0]);
+				}
+				if(sc.contains(args[0])) {
+					 return plugin.getConfig().getStringList(args[0]);
+				} else {
+					return arguments;
+				}
 			} else {
-				return null;
+				return arguments;
 			}
 		}
 	}
