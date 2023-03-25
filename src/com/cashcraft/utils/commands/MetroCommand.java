@@ -3,7 +3,6 @@ package com.cashcraft.utils.commands;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,7 +14,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.bergerkiller.bukkit.tc.pathfinding.PathNode;
-import com.bergerkiller.generated.net.minecraft.network.protocol.game.PacketPlayInTeleportAcceptHandle.PacketPlayInTeleportAcceptClass;
 import com.cashcraft.utils.Main;
 
 public class MetroCommand implements CommandExecutor {
@@ -24,12 +22,15 @@ public class MetroCommand implements CommandExecutor {
 	public MetroCommand(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("metro").setExecutor(this);
-		plugin.getCommand("metro").setTabCompleter(new InvisItemTabComplete());
+		plugin.getCommand("metro").setTabCompleter(new MetroTabComplete());
 	}
 
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if(args.length < 1) {
+			return false;
+		}
 		if(args[0].equals("list")) {
 			List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 			if(s == null || s.size() == 0) { 
@@ -61,23 +62,23 @@ public class MetroCommand implements CommandExecutor {
 					t = plugin.getConfig().getString(args[0] + "." + String.join(" ", Arrays.asList(args).subList(1, args.length)));
 				}
 				if(t == null || t.length() < 1) {
-					sender.sendMessage(ChatColor.RED + "Location " + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + " wasn't found.");
+					sender.sendMessage(ChatColor.RED + "Location " + ChatColor.GOLD + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.RED  + " wasn't found.");
 					return true;
 				}
 				if(t.startsWith("t:")) {
 					PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
 					Bukkit.dispatchCommand(sender, "tp " + sender.getName() + " " +  a.location.x + " " + a.location.y + " " + a.location.z);
-					sender.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + ".");
+					sender.sendMessage(ChatColor.GREEN + "Teleporting to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + "...");
 					return true;
 				}
 				if(t.startsWith("w:")) {
 					Bukkit.dispatchCommand(sender, "warp " + t.split("w:")[1]);
-					sender.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + ".");
+					sender.sendMessage(ChatColor.GREEN + "Teleporting to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + "...");
 					return true;
 				}
 				if(t.startsWith("h:")) {
 					Bukkit.dispatchCommand(sender, "home " + t.split("h:")[1]);
-					sender.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + ".");
+					sender.sendMessage(ChatColor.GREEN + "Teleporting to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + "...");
 					return true;
 				}
 				
@@ -89,7 +90,7 @@ public class MetroCommand implements CommandExecutor {
 			}
 		}
 	}
-	private class InvisItemTabComplete implements TabCompleter {
+	private class MetroTabComplete implements TabCompleter {
 		@SuppressWarnings("unchecked")
 		public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 			List<String> arguments = new ArrayList<String>();
@@ -111,7 +112,10 @@ public class MetroCommand implements CommandExecutor {
 					args[0] = plugin.getConfig().getString(args[0]);
 				}
 				if(sc.contains(args[0])) {
-					 return plugin.getConfig().getStringList(args[0]);
+					 plugin.getConfig().getConfigurationSection(args[0]).getKeys(false).forEach(k -> {
+						 arguments.add(k);
+					 });
+					 return arguments;
 				} else {
 					return arguments;
 				}

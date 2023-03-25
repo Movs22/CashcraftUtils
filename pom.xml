@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>CashcraftUtils</groupId>
+	<artifactId>CashcraftUtils</artifactId>
+	<version>1628</version>
+	<name>CashcraftUtils</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.number>1628</project.build.number>
+		<project.mcversion>1.19.3</project.mcversion>
+		<project.cbversion>${project.mcversion}-R0.1-SNAPSHOT</project.cbversion>
+		<project.bkcversion>1.19.3-v1</project.bkcversion>
+		<project.slversion>1.11.2-v2-SNAPSHOT</project.slversion>
+		<project.mwversion>1.11.2-v2-SNAPSHOT</project.mwversion>
+		<project.preloaderversion>1.6</project.preloaderversion>
+		<project.cloud.version>1.8.0-SNAPSHOT</project.cloud.version>
+		<junit.version>4.11</junit.version>
+	</properties>
+	<profiles>
+		<profile>
+			<id>ci</id>
+			<activation>
+				<property>
+					<name>CashcraftUtils</name>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+	<repositories>
+
+		<!-- Repo for access to BKCommonLib, MyWorlds, SignLink -->
+		<repository>
+			<id>MG-Dev Jenkins CI Maven Repository</id>
+			<url>https://ci.mg-dev.eu/plugin/repository/everything</url>
+		</repository>
+		<!-- Repo for access to CraftBukkit -->
+
+		<!-- CodeMC -->
+		<repository>
+			<id>codemc-repo</id>
+			<url>https://repo.codemc.org/repository/maven-public/</url>
+			<layout>default</layout>
+		</repository>
+
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+    		<id>ess-repo</id>
+    		<url>http://repo.ess3.net/content/groups/essentials</url>
+  		</repository>
+	</repositories>
+
+
+	<dependencies>
+		<!-- Spigot API includes the Bukkit API and is what plugins generally use -->
+
+		<dependency>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.19.3-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+			<groupId>de.tr7zw</groupId>
+        	<artifactId>item-nbt-api-plugin</artifactId>
+        	<version>2.11.2</version>
+        	<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.bergerkiller.bukkit</groupId>
+        	<artifactId>TrainCarts</artifactId>
+        	<version>1.19.3-Cashcraft-1629</version>
+        	<scope>provided</scope>
+		</dependency>
+		<dependency>
+    		<groupId>net.ess3</groupId>
+    		<artifactId>Essentials</artifactId>
+    		<version>2.20-SNAPSHOT</version>
+  		</dependency>
+		
+	</dependencies>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<finalName>${project.name}-${project.version}-NO-CI</finalName>
+
+
+
+		<defaultGoal>clean install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.3</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Clean up original artifacts (this is to make testing easier) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+					<execution>
+						<id>auto-clean</id>
+						<phase>package</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<excludeDefaultDirectories>true</excludeDefaultDirectories>
+							<filesets>
+								<fileset>
+									<directory>${project.build.directory}</directory>
+									<includes>
+										<include>original-*.jar</include>
+									</includes>
+									<followSymlinks>false</followSymlinks>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Copy the produced target to the static directory with just a base 
+				name -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<!-- Prepare the version-less output jar -->
+					<execution>
+						<id>version-less-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<copy
+									file="target/${project.name}-${project.version}-NO-CI.jar"
+									tofile="target/static/${project.name}.jar" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Generate a jar containing the source javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<failOnError>false</failOnError>
+					<doclint>none</doclint>
+					<quiet>true</quiet>
+				</configuration>
+			</plugin>
+
+			<!-- Generate a jar containing the java sources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+
+			<!-- Compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<showWarnings>true</showWarnings>
+
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
