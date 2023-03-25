@@ -38,9 +38,10 @@ public class MetroCommand implements CommandExecutor {
 				return true;
 			} else {
 				String a = ChatColor.GOLD + "There are " + s.size() + " metro stations: ";
-				for(int i = 0; i < s.size() - 1; i++) {
-					a = ChatColor.GREEN + s.get(i) + ChatColor.GOLD + ", ";
+				for(int i = 0; i < s.size(); i++) {
+					a = a + ChatColor.GREEN + s.get(i) + ChatColor.GOLD + ", ";
 				}
+				sender.sendMessage(a);
 			}
 			return true;
 		} else {
@@ -67,6 +68,10 @@ public class MetroCommand implements CommandExecutor {
 				}
 				if(t.startsWith("t:")) {
 					PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
+					if(a == null) {
+						sender.sendMessage(ChatColor.RED + "Location " + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + " wasn't found.");
+						return true;
+					}
 					Bukkit.dispatchCommand(sender, "tp " + sender.getName() + " " +  a.location.x + " " + a.location.y + " " + a.location.z);
 					sender.sendMessage(ChatColor.GREEN + "Teleporting to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + "...");
 					return true;
@@ -98,10 +103,16 @@ public class MetroCommand implements CommandExecutor {
 				List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 				List<String> sc = (List<String>) plugin.getConfig().getList("StationCodes");
 				for(int i = 0; i < sc.size(); i++) {
-					arguments.add(sc.get(i));
+					if(sc.get(i).toLowerCase().startsWith(args[0].toLowerCase()) || args[0] == "") {
+						arguments.add(sc.get(i));
+					}
 				}
 				for(int i = 0; i < s.size(); i++) {
-					arguments.add(s.get(i));
+					if(plugin.getConfig().getString(plugin.getConfig().getString(s.get(i))) != null) {
+						if(s.get(i).toLowerCase().startsWith(args[0].toLowerCase()) || args[0] == "") {
+							arguments.add(s.get(i));
+						}
+					}
 				}
 				arguments.add("list");
 				return arguments;

@@ -18,7 +18,7 @@ public class DeleteMetroCommand implements CommandExecutor {
 	public DeleteMetroCommand(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("deletemetro").setExecutor(this);
-		plugin.getCommand("deletemetro").setTabCompleter(new CreateMetroTabComplete());
+		plugin.getCommand("deletemetro").setTabCompleter(new DeleteMetroTabComplete());
 	}
 
 	@SuppressWarnings({ "unchecked", "unused" })
@@ -38,7 +38,10 @@ public class DeleteMetroCommand implements CommandExecutor {
 				sender.sendMessage(ChatColor.GREEN + "Deleted station " + ChatColor.GOLD + args[0] +":" + args[1] + ChatColor.GREEN + ".");
 				return true;
 			} else {
+				sc.remove(sc.indexOf(args[0]));
 				plugin.getConfig().set(args[0], null);
+				plugin.getConfig().set("Stations", s);
+				plugin.getConfig().set("StationCodes", sc);
 				sender.sendMessage(ChatColor.GREEN + "Deleted station " + ChatColor.GOLD + args[0] + ChatColor.GREEN + ".");
 				return true;
 			}
@@ -46,7 +49,7 @@ public class DeleteMetroCommand implements CommandExecutor {
 		sender.sendMessage(ChatColor.RED + "Station " + args[0] + " wasn't found.");
 		return true;
 	}
-	private class CreateMetroTabComplete implements TabCompleter {
+	private class DeleteMetroTabComplete implements TabCompleter {
 		@SuppressWarnings("unchecked")
 		public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
 			List<String> arguments = new ArrayList<String>();
@@ -54,10 +57,16 @@ public class DeleteMetroCommand implements CommandExecutor {
 				List<String> s = (List<String>) plugin.getConfig().getList("Stations");
 				List<String> sc = (List<String>) plugin.getConfig().getList("StationCodes");
 				for(int i = 0; i < sc.size(); i++) {
-					arguments.add(sc.get(i));
+					if(sc.get(i).startsWith(args[0]) || args[0] == "") {
+						arguments.add(sc.get(i));
+					}
 				}
 				for(int i = 0; i < s.size(); i++) {
-					arguments.add(s.get(i));
+					if(plugin.getConfig().getString(plugin.getConfig().getString(s.get(i))) != null) {
+						if(s.get(i).startsWith(args[0]) || args[0] == "") {
+							arguments.add(s.get(i));
+						}
+					}
 				}
 				return arguments;
 			} else if(args.length == 2) {

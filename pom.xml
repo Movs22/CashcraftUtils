@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>CashcraftUtils</groupId>
 	<artifactId>CashcraftUtils</artifactId>
-	<version>1628</version>
+	<version>1631</version>
 	<name>CashcraftUtils</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.number>1628</project.build.number>
+		<project.build.number>1631</project.build.number>
 		<project.mcversion>1.19.3</project.mcversion>
 		<project.cbversion>${project.mcversion}-R0.1-SNAPSHOT</project.cbversion>
 		<project.bkcversion>1.19.3-v1</project.bkcversion>
@@ -74,14 +74,10 @@
 		<dependency>
 			<groupId>com.bergerkiller.bukkit</groupId>
         	<artifactId>TrainCarts</artifactId>
-        	<version>1.19.3-Cashcraft-1629</version>
+        	<version>1.19.3-Cashcraft-1631</version>
         	<scope>provided</scope>
 		</dependency>
-		<dependency>
-    		<groupId>net.ess3</groupId>
-    		<artifactId>Essentials</artifactId>
-    		<version>2.20-SNAPSHOT</version>
-  		</dependency>
+		
 		
 	</dependencies>
 	<build>

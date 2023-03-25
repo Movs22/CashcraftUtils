@@ -7,6 +7,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.bergerkiller.bukkit.tc.TrainCarts;
 import com.cashcraft.utils.commands.CreateCommand;
+import com.cashcraft.utils.commands.CreateMetroCommand;
+import com.cashcraft.utils.commands.DeleteMetroCommand;
 import com.cashcraft.utils.commands.InvisItemCommand;
 import com.cashcraft.utils.commands.MaintenanceCommand;
 import com.cashcraft.utils.commands.MetroCommand;
@@ -14,7 +16,7 @@ import com.cashcraft.utils.commands.SignCommand;
 import com.cashcraft.utils.events.PlayerJoin;
 
 public class Main extends JavaPlugin {
-	public int _version = 1627;
+	public int _version = 1631;
 	//TODO: add more status below
 	String[] status = {"Clicking cookies, since 2022", "Traincarts-1.19.3-1624-Cashcraft-NO-CI.jar","Stop destroying maintenance doors"}; 
     public static Main plugin;
@@ -38,9 +40,13 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         //TODO: fix this code.
-        saveDefaultConfig();
+        
         plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Loaded Cashcraft Utils (Build " + plugin.getCCUVersion() + ").");
         plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] " + status[(int) Math.round(Math.random()*(status.length - 1))]);
+        if(getConfig().getString("version") == null) {
+        	saveDefaultConfig();
+        	plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Created config.yml");
+        }
         if(!getConfig().getString("version").equals("1.0")) {
         	plugin.getLogger().log(Level.SEVERE, "Config.yml was created on an older version. Plugin has been disabled to prevent any damage.");
         	getServer().getPluginManager().disablePlugin(this);
@@ -69,11 +75,14 @@ public class Main extends JavaPlugin {
         new CreateCommand(this);
         new InvisItemCommand(this);
         new MetroCommand(this);
+        new CreateMetroCommand(this);
+        new DeleteMetroCommand(this);
         new MaintenanceCommand(this);
     }
 
     @Override
     public void onDisable() {
+    	saveConfig();
         plugin.getLogger().log(Level.INFO, "Disabling Cashcraft Utils...");
     }
 }
