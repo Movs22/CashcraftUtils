@@ -16,7 +16,7 @@ import com.cashcraft.utils.commands.SignCommand;
 import com.cashcraft.utils.events.PlayerJoin;
 
 public class Main extends JavaPlugin {
-	public int _version = 1631;
+	public int _version = 1632;
 	//TODO: add more status below
 	String[] status = {"Clicking cookies, since 2022", "Traincarts-1.19.3-1624-Cashcraft-NO-CI.jar","Stop destroying maintenance doors"}; 
     public static Main plugin;

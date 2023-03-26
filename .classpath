@@ -20,5 +20,14 @@
 	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/item-nbt-api-plugin-2.11.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/spigot-api-1.19.3-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jackj/Downloads/BKCommonLib-1.19.3-v1-1438.jar"/>
+	<classpathentry kind="lib" path="/Users/tiago/.m2/repository/org/spigotmc/spigot-api/1.19.3-R0.1-SNAPSHOT/spigot-api-1.19.3-R0.1-SNAPSHOT.jar" sourcepath="/Users/tiago/.m2/repository/org/spigotmc/spigot-api/1.19.3-R0.1-SNAPSHOT/spigot-api-1.19.3-R0.1-SNAPSHOT-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.spigotmc"/>
+			<attribute name="maven.artifactId" value="spigot-api"/>
+			<attribute name="maven.version" value="1.19.3-R0.1-SNAPSHOT"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
