@@ -1,5 +1,6 @@
 package com.cashcraft.utils.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -53,7 +54,12 @@ public class MaintenanceCommand implements CommandExecutor {
 
 	private class MaintenanceTabComplete implements TabCompleter {
 		public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-			return null;
+			List<String> arguments = new ArrayList<String>();
+			if(args.length == 1) {
+				arguments.add("on");
+				arguments.add("off");
+			}
+			return arguments;
 
 		}
 	}

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>CashcraftUtils</groupId>
 	<artifactId>CashcraftUtils</artifactId>
-	<version>1632</version>
+	<version>1637</version>
 	<name>CashcraftUtils</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.number>1632</project.build.number>
+		<project.build.number>1637</project.build.number>
 		<project.mcversion>1.19.4</project.mcversion>
 		<project.cbversion>${project.mcversion}-R0.1-SNAPSHOT</project.cbversion>
 		<project.bkcversion>1.19.4-v1-SNAPSHOT</project.bkcversion>
@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>com.bergerkiller.bukkit</groupId>
         	<artifactId>TrainCarts</artifactId>
-        	<version>1.19.4-Cashcraft-1632</version>
+        	<version>1.19.4-Cashcraft-1637-DEV</version>
         	<scope>provided</scope>
 		</dependency>
 		
