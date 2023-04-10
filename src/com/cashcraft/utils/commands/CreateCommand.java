@@ -37,7 +37,7 @@ public class CreateCommand implements CommandExecutor {
 							+ loc.getBlockY() + "/" + loc.getBlockZ());
 					ItemStack command = new ItemStack(Material.COMMAND_BLOCK);
 					ItemMeta meta = command.getItemMeta();
-					meta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lift Command Block");
+					meta.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lift to "+ loc.getBlockX() + "/" + loc.getBlockY() + "/" + loc.getBlockZ());
 					command.setItemMeta(meta);
 					NBTItem commandnbt = new NBTItem(command);
 					NBTCompound commandnbt2 = commandnbt.getOrCreateCompound("BlockEntityTag");
