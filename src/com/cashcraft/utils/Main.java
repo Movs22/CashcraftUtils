@@ -3,9 +3,10 @@ package com.cashcraft.utils;
 import java.util.List;
 import java.util.logging.Level;
 
+import org.bukkit.plugin.PluginBase;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.bergerkiller.bukkit.tc.TrainCarts;
+//import com.bergerkiller.bukkit.tc.TrainCarts;
 import com.cashcraft.utils.commands.CreateCommand;
 import com.cashcraft.utils.commands.CreateMetroCommand;
 import com.cashcraft.utils.commands.DeleteMetroCommand;
@@ -22,8 +23,7 @@ public class Main extends JavaPlugin {
     public static Main plugin;
     public Boolean _maintenance = false;
     public String _maintenanceReason = "";
-    public TrainCarts traincarts;
-    
+    //TrainCarts traincarts;
     public int getCCUVersion() {
     	return this._version;
     }
@@ -58,14 +58,15 @@ public class Main extends JavaPlugin {
         }
         
         if(plugin.getServer().getPluginManager().getPlugin("Train_Carts") != null) {
-        	this.traincarts = (TrainCarts) plugin.getServer().getPluginManager().getPlugin("Train_Carts");
+        	/*this.traincarts = (TrainCarts) plugin.getServer().getPluginManager().getPlugin("Train_Carts");
         	if(this.traincarts.getTCVersion() != this.getCCUVersion()) {
         		this.traincarts = null;
         		plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] Incompatible version of TrainCarts found. Expected build " + this.getCCUVersion() + ", found build " + this.traincarts.getTCVersion() + ".");
         	} else {
         		this.traincarts.getPathProvider().getWorld("Main1").rerouteAll();
         		plugin.getLogger().log(Level.INFO, "[Cashcraft Utils] Loaded TrainCarts (Build " +  this.traincarts.getTCVersion() + "). Loaded " + traincarts.getPathProvider().getWorld("Main1").getNodes().size() + " nodes in minecraft:Main1.");
-        	}
+        	}*/
+        	plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] TrainCarts not found. TC Nodes will not be supported.");
         } else {
         	plugin.getLogger().log(Level.WARNING, "[Cashcraft Utils] TrainCarts not found. TC Nodes will not be supported.");
         }

@@ -67,14 +67,14 @@ public class MetroCommand implements CommandExecutor {
 					return true;
 				}
 				if(t.startsWith("t:")) {
-					PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
+					/*PathNode a = plugin.traincarts.getPathProvider().getWorld("Main1").getNodeByName(t.split("t:")[1]);
 					if(a == null) {
 						sender.sendMessage(ChatColor.RED + "Location " + args[0] + ":" +  String.join(" ", Arrays.asList(args).subList(1, args.length)) + " wasn't found.");
 						return true;
 					}
 					Bukkit.dispatchCommand(sender, "tp " + sender.getName() + " " +  a.location.x + " " + a.location.y + " " + a.location.z);
 					sender.sendMessage(ChatColor.GREEN + "Teleporting to " + ChatColor.GOLD +  args[0] + ":" + String.join(" ", Arrays.asList(args).subList(1, args.length)) + ChatColor.GREEN + "...");
-					return true;
+					return true;*/
 				}
 				if(t.startsWith("w:")) {
 					Bukkit.dispatchCommand(sender, "warp " + t.split("w:")[1]);
