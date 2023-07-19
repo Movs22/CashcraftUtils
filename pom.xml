@@ -66,12 +66,6 @@
         	<version>2.11.2</version>
         	<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.bergerkiller.bukkit</groupId>
-        	<artifactId>TrainCarts</artifactId>
-        	<version>1.19.4-Cashcraft-1637-DEV</version>
-        	<scope>provided</scope>
-		</dependency>
 		
 		
 	</dependencies>

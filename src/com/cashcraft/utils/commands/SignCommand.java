@@ -14,6 +14,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.bergerkiller.bukkit.tc.utils.StationParser;
+import com.cashcraft.utils.Colours;
 import com.cashcraft.utils.Main;
 
 public class SignCommand implements CommandExecutor {
@@ -86,39 +87,40 @@ public class SignCommand implements CommandExecutor {
 			}
 		}
 		if(args[0].equals("colour")) {
-			if(StationParser.convertColor(args[1]).equals(args[1])) {
+			String a = args[2];
+			if(Colours.valueOf(args[2]) != null) {
+				a = Colours.valueOf(args[2]).colour;
+			}
 				if(args[1].equals("sign")) {
 					for(int i = 0; i < 4; i++) {
-						s.setLine(i, "§" + StationParser.convertColor("$" + args[2]) + ChatColor.translateAlternateColorCodes('&', s.getLine(i)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
+						s.setLine(i, "§" + a + ChatColor.translateAlternateColorCodes('&', s.getLine(i)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
 					}
 					sender.sendMessage(ChatColor.GREEN + "Change the colour of the sign at " + b.getX() + "/" + b.getY() + "/" + b.getZ() + " to " +ChatColor.GREEN + ".");
 					s.update();
 					return true;
 				} else if(args[1].equals("1")) {
-					s.setLine(0, "§" + StationParser.convertColor("$" + args[2]) + ChatColor.translateAlternateColorCodes('&', s.getLine(0)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
+					s.setLine(0, "§" + a + ChatColor.translateAlternateColorCodes('&', s.getLine(0)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
 					s.update();
 					sender.sendMessage(ChatColor.GREEN + "Change the colour of line 1 of sign at " + b.getX() + "/" + b.getY() + "/" + b.getZ() + " to " +ChatColor.GREEN + ".");
 					return true;
 				} else if(args[1].equals("2")) {
-					s.setLine(1, "§" + StationParser.convertColor("$" + args[2]) + ChatColor.translateAlternateColorCodes('&', s.getLine(1)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
+					s.setLine(1, "§" + a + ChatColor.translateAlternateColorCodes('&', s.getLine(1)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
 					sender.sendMessage(ChatColor.GREEN + "Change the colour of line 2 of sign at " + b.getX() + "/" + b.getY() + "/" + b.getZ() + " to " +ChatColor.GREEN + ".");
 					s.update();
 					return true;
 				} else if(args[1].equals("3")) {
-					s.setLine(2, "§" + StationParser.convertColor("$" + args[2]) + ChatColor.translateAlternateColorCodes('&', s.getLine(2)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
+					s.setLine(2, "§" + a + ChatColor.translateAlternateColorCodes('&', s.getLine(2)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
 					sender.sendMessage(ChatColor.GREEN + "Change the colour of line 3 of sign at " + b.getX() + "/" + b.getY() + "/" + b.getZ() + " to " +ChatColor.GREEN + ".");
 					s.update();
 					return true;
 				} else if(args[1].equals("4")) {
-					s.setLine(3, "§" + StationParser.convertColor("$" + args[2]) + ChatColor.translateAlternateColorCodes('&', s.getLine(3)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
+					s.setLine(3, "§" + a + ChatColor.translateAlternateColorCodes('&', s.getLine(3)).replaceAll("&#(?:[A-Fa-f0-9]{1,6})", "").replaceAll("&(?:[A-Fa-f0-9]{1,1})", "") );
 					sender.sendMessage(ChatColor.GREEN + "Change the colour of line 4 of sign at " + b.getX() + "/" + b.getY() + "/" + b.getZ() + " to " + ChatColor.GREEN + ".");
 					s.update();
 					return true;
 				}
-			}
 		}
 		if(args[0].equals("set")) {
-			if(StationParser.convertColor(args[1]).equals(args[1])) {
 				String[] st = Arrays.copyOfRange(args, 2, args.length);
 				String ctx = String.join(" ", st);
 				ctx = ctx.replaceAll("&", "§").replaceAll("§§", "&");
@@ -150,7 +152,6 @@ public class SignCommand implements CommandExecutor {
 					s.update();
 					return true;
 				}
-			}
 		}
 		
 		if(args[0].equals("clear")) {
@@ -216,8 +217,8 @@ public class SignCommand implements CommandExecutor {
 							arguments.add("sign");
 						}
 					} else if(args.length == 3 && args[0].equals("colour")) {
-						for(int i = 0; i < StationParser.listColor().length; i++) {
-							arguments.add(StationParser.listColor()[i]);
+						for(int i = 0; i < Colours.values().length; i++) {
+							arguments.add(Colours.values()[i].name());
 						};
 					} else if(args.length == 3 && args[0].equals("set")) {
 						if(args[1].equals("1")) {
