@@ -36,3 +36,7 @@ commands:
         description: Starts/Stops a server maintenance
         usage: /maintenance [on/off] <reason>
         permission: cashcraft.maintenance.use
+    announce:
+        description: Sends a server announcement
+        usage: /announce [message]
+        permissions: cashcraft.announce

@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import org.bukkit.plugin.PluginBase;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.cashcraft.utils.commands.AnnounceCommand;
 //import com.bergerkiller.bukkit.tc.TrainCarts;
 import com.cashcraft.utils.commands.CreateCommand;
 import com.cashcraft.utils.commands.CreateMetroCommand;
@@ -75,10 +76,8 @@ public class Main extends JavaPlugin {
         new SignCommand(this);
         new CreateCommand(this);
         new InvisItemCommand(this);
-        new MetroCommand(this);
-        new CreateMetroCommand(this);
-        new DeleteMetroCommand(this);
         new MaintenanceCommand(this);
+        new AnnounceCommand(this);
     }
 
     @Override
